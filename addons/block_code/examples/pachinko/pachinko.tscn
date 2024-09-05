@@ -1,0 +1,738 @@
+[gd_scene load_steps=88 format=3 uid="uid://dljet5kjeyges"]
+
+[ext_resource type="Texture2D" uid="uid://bcgr5amsq3jfl" path="res://addons/block_code/examples/pong_game/assets/ball.png" id="2_lbcac"]
+[ext_resource type="Script" path="res://addons/block_code/block_code_node/block_code.gd" id="3_dp52h"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialization.gd" id="4_vsd64"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_serialized_properties.gd" id="5_rrc6c"]
+[ext_resource type="Script" path="res://addons/block_code/ui/block_canvas/option_data.gd" id="6_k7gey"]
+[ext_resource type="Script" path="res://addons/block_code/serialization/block_script_serialization.gd" id="7_wlwgr"]
+[ext_resource type="Script" path="res://addons/block_code/ui/block_canvas/variable_resource.gd" id="8_wn0tx"]
+[ext_resource type="Texture2D" uid="uid://ceiq8wmlnnnif" path="res://addons/block_code/examples/pong_game/assets/space.png" id="9_ameia"]
+[ext_resource type="PackedScene" uid="uid://bhm5m83v3fsjs" path="res://addons/block_code/examples/pachinko/pin.tscn" id="10_pofwk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pg3to"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h15jc"]
+radius = 32.0
+
+[sub_resource type="Resource" id="Resource_6122t"]
+script = ExtResource("5_rrc6c")
+block_class = &"EntryBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {}]]
+
+[sub_resource type="Resource" id="Resource_vsffc"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["block_name", &"set_var_GameStarted"], ["label", "StatementBlock"], ["color", Color(1, 0.560784, 0.0313726, 1)], ["block_type", 2], ["position", Vector2(0, 0)], ["scope", ""], ["block_format", "Set GameStarted to {value: BOOL}"], ["statement", "GameStarted = {value}"], ["defaults", {}], ["param_input_strings", {
+"value": false
+}]]
+
+[sub_resource type="Resource" id="Resource_le3rc"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"value": Vector2(100, 100)
+}]]
+
+[sub_resource type="Resource" id="Resource_2qxua"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"x": null,
+"y": 0.0
+}]]
+
+[sub_resource type="Resource" id="Resource_0ka2d"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"from": 48,
+"to": 100
+}]]
+
+[sub_resource type="Resource" id="Resource_1a3aa"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"a": 1.0,
+"b": 48.0
+}]]
+
+[sub_resource type="Resource" id="Resource_xyv5f"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {}]]
+
+[sub_resource type="Resource" id="Resource_3ecw6"]
+script = ExtResource("4_vsd64")
+name = &"viewport_width"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_xyv5f")
+
+[sub_resource type="Resource" id="Resource_efjft"]
+script = ExtResource("4_vsd64")
+name = &"subtract"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("MarginContainer/HBoxContainer/ParameterInput0/SnapPoint"), SubResource("Resource_3ecw6")]]
+block_serialized_properties = SubResource("Resource_1a3aa")
+
+[sub_resource type="Resource" id="Resource_0ndx4"]
+script = ExtResource("4_vsd64")
+name = &"randi_range"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("MarginContainer/HBoxContainer/ParameterInput41/SnapPoint"), SubResource("Resource_efjft")]]
+block_serialized_properties = SubResource("Resource_0ka2d")
+
+[sub_resource type="Resource" id="Resource_5fbb1"]
+script = ExtResource("4_vsd64")
+name = &"vector2"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("MarginContainer/HBoxContainer/ParameterInput0/SnapPoint"), SubResource("Resource_0ndx4")]]
+block_serialized_properties = SubResource("Resource_2qxua")
+
+[sub_resource type="Resource" id="Resource_e2qnp"]
+script = ExtResource("4_vsd64")
+name = &"Node2D_set_position"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/TopMarginContainer/MarginContainer/HBoxContainer/ParameterInput0/SnapPoint"), SubResource("Resource_5fbb1")]]
+block_serialized_properties = SubResource("Resource_le3rc")
+
+[sub_resource type="Resource" id="Resource_25cmo"]
+script = ExtResource("4_vsd64")
+name = &"set_var_GameStarted"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_e2qnp")]]
+block_serialized_properties = SubResource("Resource_vsffc")
+
+[sub_resource type="Resource" id="Resource_kx86k"]
+script = ExtResource("4_vsd64")
+name = &"ready"
+position = Vector2(75, -25)
+path_child_pairs = [[NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_25cmo")]]
+block_serialized_properties = SubResource("Resource_6122t")
+
+[sub_resource type="Resource" id="Resource_05io8"]
+script = ExtResource("5_rrc6c")
+block_class = &"EntryBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {}]]
+
+[sub_resource type="Resource" id="Resource_bpd3f"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{
+"condition": false
+}]]]
+
+[sub_resource type="Resource" id="Resource_hbteu"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["block_name", &"get_var_GameStarted"], ["label", "Param"], ["color", Color(1, 0.560784, 0.0313726, 1)], ["block_type", 3], ["position", Vector2(0, 0)], ["scope", ""], ["block_format", "GameStarted"], ["statement", "GameStarted"], ["defaults", {}], ["variant_type", 1], ["param_input_strings", {}]]
+
+[sub_resource type="Resource" id="Resource_6lff2"]
+script = ExtResource("4_vsd64")
+name = &"get_var_GameStarted"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_hbteu")
+
+[sub_resource type="Resource" id="Resource_gkb5y"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{
+"condition": false
+}]]]
+
+[sub_resource type="Resource" id="Resource_xno4h"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_left", "ui_right", "ui_up", "ui_down", "ui_page_up", "ui_page_down", "ui_home", "ui_end", "ui_cut", "ui_copy", "ui_paste", "ui_undo", "ui_redo", "ui_text_completion_query", "ui_text_completion_accept", "ui_text_completion_replace", "ui_text_newline", "ui_text_newline_blank", "ui_text_newline_above", "ui_text_indent", "ui_text_dedent", "ui_text_backspace", "ui_text_backspace_word", "ui_text_backspace_word.macos", "ui_text_backspace_all_to_left", "ui_text_backspace_all_to_left.macos", "ui_text_delete", "ui_text_delete_word", "ui_text_delete_word.macos", "ui_text_delete_all_to_right", "ui_text_delete_all_to_right.macos", "ui_text_caret_left", "ui_text_caret_word_left", "ui_text_caret_word_left.macos", "ui_text_caret_right", "ui_text_caret_word_right", "ui_text_caret_word_right.macos", "ui_text_caret_up", "ui_text_caret_down", "ui_text_caret_line_start", "ui_text_caret_line_start.macos", "ui_text_caret_line_end", "ui_text_caret_line_end.macos", "ui_text_caret_page_up", "ui_text_caret_page_down", "ui_text_caret_document_start", "ui_text_caret_document_start.macos", "ui_text_caret_document_end", "ui_text_caret_document_end.macos", "ui_text_caret_add_below", "ui_text_caret_add_below.macos", "ui_text_caret_add_above", "ui_text_caret_add_above.macos", "ui_text_scroll_up", "ui_text_scroll_up.macos", "ui_text_scroll_down", "ui_text_scroll_down.macos", "ui_text_select_all", "ui_text_select_word_under_caret", "ui_text_select_word_under_caret.macos", "ui_text_add_selection_for_next_occurrence", "ui_text_skip_selection_for_next_occurrence", "ui_text_clear_carets_and_selection", "ui_text_toggle_insert_mode", "ui_menu", "ui_text_submit", "ui_graph_duplicate", "ui_graph_delete", "ui_filedialog_up_one_level", "ui_filedialog_refresh", "ui_filedialog_show_hidden", "ui_swap_input_direction"]
+
+[sub_resource type="Resource" id="Resource_hv5o6"]
+script = ExtResource("6_k7gey")
+selected = 2
+items = ["pressed", "just_pressed", "just_released"]
+
+[sub_resource type="Resource" id="Resource_wpkj8"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"action": SubResource("Resource_hv5o6"),
+"action_name": SubResource("Resource_xno4h")
+}]]
+
+[sub_resource type="Resource" id="Resource_cxv3m"]
+script = ExtResource("4_vsd64")
+name = &"is_input_actioned"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_wpkj8")
+
+[sub_resource type="Resource" id="Resource_ds1p3"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"value": Vector2(1, 1)
+}]]
+
+[sub_resource type="Resource" id="Resource_guf4g"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"x": null,
+"y": null
+}]]
+
+[sub_resource type="Resource" id="Resource_vbi1h"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"from": -300,
+"to": 300
+}]]
+
+[sub_resource type="Resource" id="Resource_wi2is"]
+script = ExtResource("4_vsd64")
+name = &"randi_range"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_vbi1h")
+
+[sub_resource type="Resource" id="Resource_eiufq"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"from": -100,
+"to": 100
+}]]
+
+[sub_resource type="Resource" id="Resource_rqf67"]
+script = ExtResource("4_vsd64")
+name = &"randi_range"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_eiufq")
+
+[sub_resource type="Resource" id="Resource_hdieg"]
+script = ExtResource("4_vsd64")
+name = &"vector2"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("MarginContainer/HBoxContainer/ParameterInput0/SnapPoint"), SubResource("Resource_wi2is")], [NodePath("MarginContainer/HBoxContainer/ParameterInput21/SnapPoint"), SubResource("Resource_rqf67")]]
+block_serialized_properties = SubResource("Resource_guf4g")
+
+[sub_resource type="Resource" id="Resource_dofk4"]
+script = ExtResource("4_vsd64")
+name = &"RigidBody2D_change_linear_velocity"
+position = Vector2(20, 0)
+path_child_pairs = [[NodePath("VBoxContainer/TopMarginContainer/MarginContainer/HBoxContainer/ParameterInput0/SnapPoint"), SubResource("Resource_hdieg")]]
+block_serialized_properties = SubResource("Resource_ds1p3")
+
+[sub_resource type="Resource" id="Resource_wckr8"]
+script = ExtResource("4_vsd64")
+name = &"if"
+position = Vector2(20, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/Row0/RowHBoxContainer/RowHBox/ParameterInput0/SnapPoint"), SubResource("Resource_cxv3m")], [NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_dofk4")]]
+block_serialized_properties = SubResource("Resource_gkb5y")
+
+[sub_resource type="Resource" id="Resource_arq5v"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{}]]]
+
+[sub_resource type="Resource" id="Resource_b8ij0"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{
+"condition": false
+}]]]
+
+[sub_resource type="Resource" id="Resource_cxrsm"]
+script = ExtResource("6_k7gey")
+selected = 5
+items = ["ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_left", "ui_right", "ui_up", "ui_down", "ui_page_up", "ui_page_down", "ui_home", "ui_end", "ui_cut", "ui_copy", "ui_paste", "ui_undo", "ui_redo", "ui_text_completion_query", "ui_text_completion_accept", "ui_text_completion_replace", "ui_text_newline", "ui_text_newline_blank", "ui_text_newline_above", "ui_text_indent", "ui_text_dedent", "ui_text_backspace", "ui_text_backspace_word", "ui_text_backspace_word.macos", "ui_text_backspace_all_to_left", "ui_text_backspace_all_to_left.macos", "ui_text_delete", "ui_text_delete_word", "ui_text_delete_word.macos", "ui_text_delete_all_to_right", "ui_text_delete_all_to_right.macos", "ui_text_caret_left", "ui_text_caret_word_left", "ui_text_caret_word_left.macos", "ui_text_caret_right", "ui_text_caret_word_right", "ui_text_caret_word_right.macos", "ui_text_caret_up", "ui_text_caret_down", "ui_text_caret_line_start", "ui_text_caret_line_start.macos", "ui_text_caret_line_end", "ui_text_caret_line_end.macos", "ui_text_caret_page_up", "ui_text_caret_page_down", "ui_text_caret_document_start", "ui_text_caret_document_start.macos", "ui_text_caret_document_end", "ui_text_caret_document_end.macos", "ui_text_caret_add_below", "ui_text_caret_add_below.macos", "ui_text_caret_add_above", "ui_text_caret_add_above.macos", "ui_text_scroll_up", "ui_text_scroll_up.macos", "ui_text_scroll_down", "ui_text_scroll_down.macos", "ui_text_select_all", "ui_text_select_word_under_caret", "ui_text_select_word_under_caret.macos", "ui_text_add_selection_for_next_occurrence", "ui_text_skip_selection_for_next_occurrence", "ui_text_clear_carets_and_selection", "ui_text_toggle_insert_mode", "ui_menu", "ui_text_submit", "ui_graph_duplicate", "ui_graph_delete", "ui_filedialog_up_one_level", "ui_filedialog_refresh", "ui_filedialog_show_hidden", "ui_swap_input_direction"]
+
+[sub_resource type="Resource" id="Resource_1woyj"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["pressed", "just_pressed", "just_released"]
+
+[sub_resource type="Resource" id="Resource_pg2p0"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"action": SubResource("Resource_1woyj"),
+"action_name": SubResource("Resource_cxrsm")
+}]]
+
+[sub_resource type="Resource" id="Resource_s68p8"]
+script = ExtResource("4_vsd64")
+name = &"is_input_actioned"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_pg2p0")
+
+[sub_resource type="Resource" id="Resource_my7qj"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"value": Vector2(-5, 0)
+}]]
+
+[sub_resource type="Resource" id="Resource_odp4i"]
+script = ExtResource("4_vsd64")
+name = &"Node2D_change_position"
+position = Vector2(20, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_my7qj")
+
+[sub_resource type="Resource" id="Resource_fj1hc"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{
+"condition": false
+}]]]
+
+[sub_resource type="Resource" id="Resource_new46"]
+script = ExtResource("6_k7gey")
+selected = 6
+items = ["ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_left", "ui_right", "ui_up", "ui_down", "ui_page_up", "ui_page_down", "ui_home", "ui_end", "ui_cut", "ui_copy", "ui_paste", "ui_undo", "ui_redo", "ui_text_completion_query", "ui_text_completion_accept", "ui_text_completion_replace", "ui_text_newline", "ui_text_newline_blank", "ui_text_newline_above", "ui_text_indent", "ui_text_dedent", "ui_text_backspace", "ui_text_backspace_word", "ui_text_backspace_word.macos", "ui_text_backspace_all_to_left", "ui_text_backspace_all_to_left.macos", "ui_text_delete", "ui_text_delete_word", "ui_text_delete_word.macos", "ui_text_delete_all_to_right", "ui_text_delete_all_to_right.macos", "ui_text_caret_left", "ui_text_caret_word_left", "ui_text_caret_word_left.macos", "ui_text_caret_right", "ui_text_caret_word_right", "ui_text_caret_word_right.macos", "ui_text_caret_up", "ui_text_caret_down", "ui_text_caret_line_start", "ui_text_caret_line_start.macos", "ui_text_caret_line_end", "ui_text_caret_line_end.macos", "ui_text_caret_page_up", "ui_text_caret_page_down", "ui_text_caret_document_start", "ui_text_caret_document_start.macos", "ui_text_caret_document_end", "ui_text_caret_document_end.macos", "ui_text_caret_add_below", "ui_text_caret_add_below.macos", "ui_text_caret_add_above", "ui_text_caret_add_above.macos", "ui_text_scroll_up", "ui_text_scroll_up.macos", "ui_text_scroll_down", "ui_text_scroll_down.macos", "ui_text_select_all", "ui_text_select_word_under_caret", "ui_text_select_word_under_caret.macos", "ui_text_add_selection_for_next_occurrence", "ui_text_skip_selection_for_next_occurrence", "ui_text_clear_carets_and_selection", "ui_text_toggle_insert_mode", "ui_menu", "ui_text_submit", "ui_graph_duplicate", "ui_graph_delete", "ui_filedialog_up_one_level", "ui_filedialog_refresh", "ui_filedialog_show_hidden", "ui_swap_input_direction"]
+
+[sub_resource type="Resource" id="Resource_urkdp"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["pressed", "just_pressed", "just_released"]
+
+[sub_resource type="Resource" id="Resource_g0ssc"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"action": SubResource("Resource_urkdp"),
+"action_name": SubResource("Resource_new46")
+}]]
+
+[sub_resource type="Resource" id="Resource_2dytr"]
+script = ExtResource("4_vsd64")
+name = &"is_input_actioned"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_g0ssc")
+
+[sub_resource type="Resource" id="Resource_svwi7"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"value": Vector2(5, 0)
+}]]
+
+[sub_resource type="Resource" id="Resource_ivvow"]
+script = ExtResource("4_vsd64")
+name = &"Node2D_change_position"
+position = Vector2(20, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_svwi7")
+
+[sub_resource type="Resource" id="Resource_x8xf4"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{
+"condition": false
+}]]]
+
+[sub_resource type="Resource" id="Resource_5kd63"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_left", "ui_right", "ui_up", "ui_down", "ui_page_up", "ui_page_down", "ui_home", "ui_end", "ui_cut", "ui_copy", "ui_paste", "ui_undo", "ui_redo", "ui_text_completion_query", "ui_text_completion_accept", "ui_text_completion_replace", "ui_text_newline", "ui_text_newline_blank", "ui_text_newline_above", "ui_text_indent", "ui_text_dedent", "ui_text_backspace", "ui_text_backspace_word", "ui_text_backspace_word.macos", "ui_text_backspace_all_to_left", "ui_text_backspace_all_to_left.macos", "ui_text_delete", "ui_text_delete_word", "ui_text_delete_word.macos", "ui_text_delete_all_to_right", "ui_text_delete_all_to_right.macos", "ui_text_caret_left", "ui_text_caret_word_left", "ui_text_caret_word_left.macos", "ui_text_caret_right", "ui_text_caret_word_right", "ui_text_caret_word_right.macos", "ui_text_caret_up", "ui_text_caret_down", "ui_text_caret_line_start", "ui_text_caret_line_start.macos", "ui_text_caret_line_end", "ui_text_caret_line_end.macos", "ui_text_caret_page_up", "ui_text_caret_page_down", "ui_text_caret_document_start", "ui_text_caret_document_start.macos", "ui_text_caret_document_end", "ui_text_caret_document_end.macos", "ui_text_caret_add_below", "ui_text_caret_add_below.macos", "ui_text_caret_add_above", "ui_text_caret_add_above.macos", "ui_text_scroll_up", "ui_text_scroll_up.macos", "ui_text_scroll_down", "ui_text_scroll_down.macos", "ui_text_select_all", "ui_text_select_word_under_caret", "ui_text_select_word_under_caret.macos", "ui_text_add_selection_for_next_occurrence", "ui_text_skip_selection_for_next_occurrence", "ui_text_clear_carets_and_selection", "ui_text_toggle_insert_mode", "ui_menu", "ui_text_submit", "ui_graph_duplicate", "ui_graph_delete", "ui_filedialog_up_one_level", "ui_filedialog_refresh", "ui_filedialog_show_hidden", "ui_swap_input_direction"]
+
+[sub_resource type="Resource" id="Resource_h3jno"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["pressed", "just_pressed", "just_released"]
+
+[sub_resource type="Resource" id="Resource_h4sgm"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"action": SubResource("Resource_h3jno"),
+"action_name": SubResource("Resource_5kd63")
+}]]
+
+[sub_resource type="Resource" id="Resource_fsln7"]
+script = ExtResource("4_vsd64")
+name = &"is_input_actioned"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_h4sgm")
+
+[sub_resource type="Resource" id="Resource_rxsy3"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["block_name", &"set_var_GameStarted"], ["label", "StatementBlock"], ["color", Color(1, 0.560784, 0.0313726, 1)], ["block_type", 2], ["position", Vector2(20, 0)], ["scope", ""], ["block_format", "Set GameStarted to {value: BOOL}"], ["statement", "GameStarted = {value}"], ["defaults", {}], ["param_input_strings", {
+"value": true
+}]]
+
+[sub_resource type="Resource" id="Resource_rnjmi"]
+script = ExtResource("4_vsd64")
+name = &"set_var_GameStarted"
+position = Vector2(20, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_rxsy3")
+
+[sub_resource type="Resource" id="Resource_rum6y"]
+script = ExtResource("4_vsd64")
+name = &"else_if"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/Row0/RowHBoxContainer/RowHBox/ParameterInput0/SnapPoint"), SubResource("Resource_fsln7")], [NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_rnjmi")]]
+block_serialized_properties = SubResource("Resource_x8xf4")
+
+[sub_resource type="Resource" id="Resource_oy8bn"]
+script = ExtResource("4_vsd64")
+name = &"else_if"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/Row0/RowHBoxContainer/RowHBox/ParameterInput0/SnapPoint"), SubResource("Resource_2dytr")], [NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_ivvow")], [NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_rum6y")]]
+block_serialized_properties = SubResource("Resource_fj1hc")
+
+[sub_resource type="Resource" id="Resource_h77jf"]
+script = ExtResource("4_vsd64")
+name = &"if"
+position = Vector2(20, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/Row0/RowHBoxContainer/RowHBox/ParameterInput0/SnapPoint"), SubResource("Resource_s68p8")], [NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_odp4i")], [NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_oy8bn")]]
+block_serialized_properties = SubResource("Resource_b8ij0")
+
+[sub_resource type="Resource" id="Resource_b3boa"]
+script = ExtResource("4_vsd64")
+name = &"else"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_h77jf")]]
+block_serialized_properties = SubResource("Resource_arq5v")
+
+[sub_resource type="Resource" id="Resource_4jen6"]
+script = ExtResource("4_vsd64")
+name = &"if"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/Row0/RowHBoxContainer/RowHBox/ParameterInput0/SnapPoint"), SubResource("Resource_6lff2")], [NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_wckr8")], [NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_b3boa")]]
+block_serialized_properties = SubResource("Resource_bpd3f")
+
+[sub_resource type="Resource" id="Resource_nxh88"]
+script = ExtResource("4_vsd64")
+name = &"process"
+position = Vector2(75, 200)
+path_child_pairs = [[NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_4jen6")]]
+block_serialized_properties = SubResource("Resource_05io8")
+
+[sub_resource type="Resource" id="Resource_wigku"]
+script = ExtResource("8_wn0tx")
+var_name = "GameStarted"
+var_type = 1
+
+[sub_resource type="Resource" id="Resource_5mopp"]
+script = ExtResource("7_wlwgr")
+script_inherits = "RigidBody2D"
+block_trees = Array[ExtResource("4_vsd64")]([SubResource("Resource_kx86k"), SubResource("Resource_nxh88")])
+variables = Array[ExtResource("8_wn0tx")]([SubResource("Resource_wigku")])
+generated_script = "extends RigidBody2D
+
+var GameStarted: bool
+
+
+func _ready():
+	GameStarted = false
+	position = Vector2(float(randi_range(48, int((func (): var transform: Transform2D = get_viewport_transform(); var scale: Vector2 = transform.get_scale(); return -transform.origin.x / scale.x + get_viewport_rect().size.x / scale.x).call() - 48))), 0)
+
+func _process(delta):
+	if GameStarted:
+		if Input.is_action_just_released(\"ui_accept\"):
+			linear_velocity += Vector2(float(randi_range(-300, 300)), float(randi_range(-100, 100)))
+	else:
+		if Input.is_action_pressed(\"ui_left\"):
+			position += Vector2(-5, 0)
+		elif Input.is_action_pressed(\"ui_right\"):
+			position += Vector2(5, 0)
+		elif Input.is_action_pressed(\"ui_accept\"):
+			GameStarted = true
+
+"
+version = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmvwg"]
+resource_local_to_scene = true
+size = Vector2(600, 1024)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwl3j"]
+size = Vector2(156, 22)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j04py"]
+
+[sub_resource type="Resource" id="Resource_r4qo1"]
+script = ExtResource("5_rrc6c")
+block_class = &"EntryBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {}]]
+
+[sub_resource type="Resource" id="Resource_fonr5"]
+script = ExtResource("5_rrc6c")
+block_class = &"ControlBlock"
+serialized_props = [["scope", ""], ["param_input_strings_array", [{
+"condition": false
+}]]]
+
+[sub_resource type="Resource" id="Resource_0ul50"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["ui_accept", "ui_select", "ui_cancel", "ui_focus_next", "ui_focus_prev", "ui_left", "ui_right", "ui_up", "ui_down", "ui_page_up", "ui_page_down", "ui_home", "ui_end", "ui_cut", "ui_copy", "ui_paste", "ui_undo", "ui_redo", "ui_text_completion_query", "ui_text_completion_accept", "ui_text_completion_replace", "ui_text_newline", "ui_text_newline_blank", "ui_text_newline_above", "ui_text_indent", "ui_text_dedent", "ui_text_backspace", "ui_text_backspace_word", "ui_text_backspace_word.macos", "ui_text_backspace_all_to_left", "ui_text_backspace_all_to_left.macos", "ui_text_delete", "ui_text_delete_word", "ui_text_delete_word.macos", "ui_text_delete_all_to_right", "ui_text_delete_all_to_right.macos", "ui_text_caret_left", "ui_text_caret_word_left", "ui_text_caret_word_left.macos", "ui_text_caret_right", "ui_text_caret_word_right", "ui_text_caret_word_right.macos", "ui_text_caret_up", "ui_text_caret_down", "ui_text_caret_line_start", "ui_text_caret_line_start.macos", "ui_text_caret_line_end", "ui_text_caret_line_end.macos", "ui_text_caret_page_up", "ui_text_caret_page_down", "ui_text_caret_document_start", "ui_text_caret_document_start.macos", "ui_text_caret_document_end", "ui_text_caret_document_end.macos", "ui_text_caret_add_below", "ui_text_caret_add_below.macos", "ui_text_caret_add_above", "ui_text_caret_add_above.macos", "ui_text_scroll_up", "ui_text_scroll_up.macos", "ui_text_scroll_down", "ui_text_scroll_down.macos", "ui_text_select_all", "ui_text_select_word_under_caret", "ui_text_select_word_under_caret.macos", "ui_text_add_selection_for_next_occurrence", "ui_text_skip_selection_for_next_occurrence", "ui_text_clear_carets_and_selection", "ui_text_toggle_insert_mode", "ui_menu", "ui_text_submit", "ui_graph_duplicate", "ui_graph_delete", "ui_filedialog_up_one_level", "ui_filedialog_refresh", "ui_filedialog_show_hidden", "ui_swap_input_direction"]
+
+[sub_resource type="Resource" id="Resource_pev24"]
+script = ExtResource("6_k7gey")
+selected = 0
+items = ["pressed", "just_pressed", "just_released"]
+
+[sub_resource type="Resource" id="Resource_l0ecs"]
+script = ExtResource("5_rrc6c")
+block_class = &"ParameterBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {
+"action": SubResource("Resource_pev24"),
+"action_name": SubResource("Resource_0ul50")
+}]]
+
+[sub_resource type="Resource" id="Resource_sx6s2"]
+script = ExtResource("4_vsd64")
+name = &"is_input_actioned"
+position = Vector2(0, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_l0ecs")
+
+[sub_resource type="Resource" id="Resource_bdad2"]
+script = ExtResource("5_rrc6c")
+block_class = &"StatementBlock"
+serialized_props = [["scope", ""], ["param_input_strings", {}]]
+
+[sub_resource type="Resource" id="Resource_yij0c"]
+script = ExtResource("4_vsd64")
+name = &"queue_free"
+position = Vector2(20, 0)
+path_child_pairs = []
+block_serialized_properties = SubResource("Resource_bdad2")
+
+[sub_resource type="Resource" id="Resource_wcuq0"]
+script = ExtResource("4_vsd64")
+name = &"if"
+position = Vector2(0, 0)
+path_child_pairs = [[NodePath("VBoxContainer/MarginContainer/Rows/Row0/RowHBoxContainer/RowHBox/ParameterInput0/SnapPoint"), SubResource("Resource_sx6s2")], [NodePath("VBoxContainer/MarginContainer/Rows/SnapContainer0/SnapPoint"), SubResource("Resource_yij0c")]]
+block_serialized_properties = SubResource("Resource_fonr5")
+
+[sub_resource type="Resource" id="Resource_xsqwr"]
+script = ExtResource("4_vsd64")
+name = &"process"
+position = Vector2(75, 50)
+path_child_pairs = [[NodePath("VBoxContainer/SnapPoint"), SubResource("Resource_wcuq0")]]
+block_serialized_properties = SubResource("Resource_r4qo1")
+
+[sub_resource type="Resource" id="Resource_cy4sh"]
+script = ExtResource("7_wlwgr")
+script_inherits = "StaticBody2D"
+block_trees = Array[ExtResource("4_vsd64")]([SubResource("Resource_xsqwr")])
+variables = Array[ExtResource("8_wn0tx")]([])
+generated_script = "extends StaticBody2D
+
+
+func _process(delta):
+	if Input.is_action_pressed(\"ui_accept\"):
+		queue_free()
+
+"
+version = 0
+
+[node name="Pachinko" type="Node2D"]
+
+[node name="Pins" type="Node" parent="."]
+
+[node name="Pin 1x1" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(100, 100)
+
+[node name="Pin 1x2" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(200, 100)
+
+[node name="Pin 1x3" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(300, 100)
+
+[node name="Pin 1x4" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(400, 100)
+
+[node name="Pin 1x5" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(500, 100)
+
+[node name="Pin 2x1" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(50, 200)
+
+[node name="Pin 2x2" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(150, 200)
+
+[node name="Pin 2x3" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(250, 200)
+
+[node name="Pin 2x4" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(350, 200)
+
+[node name="Pin 2x5" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(450, 200)
+
+[node name="Pin 2x6" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(550, 200)
+
+[node name="Pin 3x1" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(100, 300)
+
+[node name="Pin 3x2" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(200, 300)
+
+[node name="Pin 3x3" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(300, 300)
+
+[node name="Pin 3x4" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(400, 300)
+
+[node name="Pin 3x5" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(500, 300)
+
+[node name="Pin 5x1" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(100, 500)
+
+[node name="Pin 5x2" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(200, 500)
+
+[node name="Pin 5x3" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(300, 500)
+
+[node name="Pin 5x4" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(400, 500)
+
+[node name="Pin 5x5" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(500, 500)
+
+[node name="Pin 4x1" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(50, 400)
+
+[node name="Pin 4x2" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(150, 400)
+
+[node name="Pin 4x3" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(250, 400)
+
+[node name="Pin 4x4" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(350, 400)
+
+[node name="Pin 4x5" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(450, 400)
+
+[node name="Pin 4x6" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(550, 400)
+
+[node name="Pin 4x7" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(50, 600)
+
+[node name="Pin 4x8" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(150, 600)
+
+[node name="Pin 4x9" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(250, 600)
+
+[node name="Pin 4x10" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(350, 600)
+
+[node name="Pin 4x11" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(450, 600)
+
+[node name="Pin 4x12" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(550, 600)
+
+[node name="Pin 5x6" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(100, 700)
+
+[node name="Pin 5x7" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(200, 700)
+
+[node name="Pin 5x8" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(300, 700)
+
+[node name="Pin 5x9" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(400, 700)
+
+[node name="Pin 5x10" parent="Pins" instance=ExtResource("10_pofwk")]
+position = Vector2(500, 700)
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(301, 0)
+physics_material_override = SubResource("PhysicsMaterial_pg3to")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_h15jc")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_lbcac")
+
+[node name="BlockCode" type="Node" parent="Ball"]
+script = ExtResource("3_dp52h")
+block_script = SubResource("Resource_5mopp")
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="Left Wall" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Left Wall"]
+position = Vector2(-300, 512)
+shape = SubResource("RectangleShape2D_gmvwg")
+
+[node name="Right Wall" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Right Wall"]
+position = Vector2(900, 512)
+shape = SubResource("RectangleShape2D_gmvwg")
+
+[node name="Floor" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Floor"]
+position = Vector2(300, 1536)
+shape = SubResource("RectangleShape2D_gmvwg")
+
+[node name="Ceiling" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Ceiling"]
+position = Vector2(300, -512)
+shape = SubResource("RectangleShape2D_gmvwg")
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 931.0
+offset_right = 340.0
+offset_bottom = 1006.0
+text = "←/→: set starting position
+Space/Enter: drop ball
+Space/Enter again: bump… but be careful!"
+vertical_alignment = 2
+
+[node name="Goal" type="StaticBody2D" parent="."]
+position = Vector2(300, 850)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("RectangleShape2D_wwl3j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
+scale = Vector2(0.401042, 0.0625)
+texture = ExtResource("9_ameia")
+
+[node name="Bump" type="Label" parent="."]
+offset_left = 498.0
+offset_top = 960.0
+offset_right = 546.0
+offset_bottom = 983.0
+text = "BUMP"
+
+[node name="StarterBarrier" type="StaticBody2D" parent="."]
+position = Vector2(0, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StarterBarrier"]
+shape = SubResource("WorldBoundaryShape2D_j04py")
+
+[node name="BlockCode" type="Node" parent="StarterBarrier"]
+script = ExtResource("3_dp52h")
+block_script = SubResource("Resource_cy4sh")
